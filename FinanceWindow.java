@@ -105,9 +105,13 @@ public class FinanceWindow extends JFrame implements ActionListener{
 		m_tabbedPane = new JTabbedPane();
 		
 		m_newClient = new JMenuItem("New Client");
+		m_newClient.setActionCommand("New Client");
+		m_newClient.addActionListener(this);
 		m_saveClientList = new JMenuItem("Save");
 		m_loadClientList = new JMenuItem("Load");
 		m_exit = new JMenuItem("Exit");
+		m_exit.setActionCommand("Exit");
+		m_exit.addActionListener(this);
 		
 		m_fileMenu = new JMenu("File");
 		m_fileMenu.add(m_newClient);
@@ -345,6 +349,7 @@ public class FinanceWindow extends JFrame implements ActionListener{
 	 ************************************************/
 	public void actionPerformed(ActionEvent arg) {
 		Object ev = arg.getSource();
+		
 		if(ev == m_tabbutton)
 		{
 			addTab("New Client!");
@@ -354,11 +359,15 @@ public class FinanceWindow extends JFrame implements ActionListener{
 			
 			addClientTab("Submitted Client");
 		}
-		if(ev == m_exit)
+		if("Exit".equals(arg.getActionCommand()))
 		{
 			System.exit(0);
-
 		}
+		if("New Client".equals(arg.getActionCommand()))
+		{
+			addTab("New Client!");
+		}
+		
 
 
 	}
